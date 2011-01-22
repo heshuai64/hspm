@@ -38,18 +38,18 @@ if (!defined('DP_BASE_DIR')) {
 	<td align="left" nowrap><input type="password" size="25" maxlength="32" name="password" class="text" /></td>
 </tr>
 <tr>
-	<td align="left" nowrap><a href="http://www.dotproject.net/"><img src="./style/default/images/dp_icon.gif" border="0" alt="dotProject logo" /></a></td>
+	<td align="left" nowrap></td>
 	<td align="right" valign="bottom" nowrap><input type="submit" name="login" value="<?php echo $AppUI->_('login');?>" class="button" /></td>
 </tr>
 <tr>
-	<td colspan="2"><a href="#" onclick="f=document.loginform;f.lostpass.value=1;f.submit();"><?php echo $AppUI->_('forgotPassword');?></a></td>
+	<td colspan="2"></td>
 </tr>
 </table>
-<?php if (@$AppUI->getVersion()) { ?>
+<?php /*if (@$AppUI->getVersion()) { ?>
 <div align="center">
 	<span style="font-size:7pt">Version <?php echo @$AppUI->getVersion();?></span>
 </div>
-<?php } ?>
+<?php }*/ ?>
 </form>
 <div align="center">
 <?php
