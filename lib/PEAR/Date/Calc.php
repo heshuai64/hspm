@@ -1612,7 +1612,7 @@ class Date_Calc
 		$Date_Calc_weekdays = array();
         $now_date = strftime($format,time());
 		for($i=0;$i<7;$i++){
-		    $Date_Calc_weekdays[$i] = strftime('%A', mktime(0, 0, 0, 1, $i, 2001));
+		    $Date_Calc_weekdays[$i] = date('l', mktime(0, 0, 0, 1, $i, 2001));
             if ($locale_char_set != 'iso-8859-1') {
                 $Date_Calc_weekdays[$i] = mb_convert_encoding($Date_Calc_weekdays[$i], 
                                                               $locale_char_set, 'iso-8859-1');
