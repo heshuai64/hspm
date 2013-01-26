@@ -369,7 +369,7 @@ for ($i = 0; $i < count(@$gantt_arr); $i ++) {
 	}
 	$name = $a['task_name'];
 	if ($locale_char_set=='utf-8' && function_exists('utf8_decode')) {
-		$name = utf8_decode($name);
+		$name = $name;
 	}
 	$name = ((mb_strlen($name) > 34) ? (mb_substr($name, 0, 33) . '.') : $name);
 	$name = (str_repeat(' ', $level) . $name);
@@ -381,7 +381,7 @@ for ($i = 0; $i < count(@$gantt_arr); $i ++) {
 				$pname = ((mb_strlen($pname) > 14 
 				          ? (mb_substr($pname, 0, 5) . '...' . mb_substr($pname, -5, 5)) : $pname));
 			}  else if (function_exists('utf8_decode')) {
-				$pname = utf8_decode($pname);
+				$pname = $pname;
 			}
 		} else {
 			$pname = ((mb_strlen($pname) > 14) 

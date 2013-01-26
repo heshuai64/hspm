@@ -375,6 +375,7 @@ function BuildMail() {
  *  format and send the mail
  *  @access public
 */
+/*
 function Send() {
 	$this->BuildMail();
 	
@@ -392,6 +393,62 @@ function Send() {
 		}
 		return @mail($this->xheaders['To'], $this->xheaders['Subject'], $this->fullBody, $headers);
 	}
+}
+*/
+function Send(){
+	$this->BuildMail();
+	include("class.phpmailer.php");
+
+	
+	$mail  = new PHPMailer();
+	$mail->CharSet = "utf-8";
+        $mail->PluginDir = "./classes/";
+        $mail->IsSMTP();
+        $mail->SMTPAuth   = true;                  // enable SMTP authentication
+        $mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
+        $mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
+        $mail->Port       = 465;                   // set the SMTP port for the GMAIL server
+        
+        //$mail->SMTPDebug = true;
+        
+        $mail->Username   = "richcole2011@gmail.com";  // GMAIL username
+        $mail->Password   = "aabbcc1122";         // GMAIL password
+        
+        $mail->AddReplyTo("richcole2011@gmail.com", "Project Management");
+        
+        $mail->From       = "richcole2011@gmail.com";
+        $mail->FromName   = "Project Management";
+        
+        $mail->Subject    = $this->xheaders['Subject'];
+        
+        $mail->Body       = $this->fullBody;                      //HTML Body
+        //$mail->AltBody    = $toContent; // optional, comment out and test
+        $mail->WordWrap   = 50; // set word wrap
+        
+        //$mail->MsgHTML($this->fullBody);
+        if(strpos($this->xheaders['To'], ",")){
+		$tos = explode(",", $this->xheaders['To']);
+		foreach($tos as $to){
+			$mail->AddAddress(trim($to), $to);
+		}
+	}
+        
+        //$mail->AddAddress("meidgen@hotmail.com", "meidgen");
+        //$mail->AddAddress("heshuai64@gmail.com", "heshuai");
+        
+        //$mail->IsHTML(true); // send as HTML
+        
+        if(!$mail->Send()) {
+            //$this->log("email/sendXmasShpmentEmail", "<font color='red'>Send Email Failure: " . $mail->ErrorInfo."</font><br>");
+            //echo "Mailer Error: " . $mail->ErrorInfo."!";
+            //echo "\n";
+            return false;
+        } else {
+            //$this->log("email/sendXmasShpmentEmail", "Send Email Success<br>");
+            //echo "send email success!";
+            //echo "\n";
+            return true;
+        }
 }
 
 /**

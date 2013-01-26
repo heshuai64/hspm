@@ -173,9 +173,9 @@ if (is_array($tasks)) {
 		}
 		
 		if ($locale_char_set=='utf-8' && function_exists('utf_decode')) {
-			$name = ((mb_strlen(utf8_decode($t['task_name'])) > 25) 
-			         ? (mb_substr(utf8_decode($t['task_name']), 0, 22) . '...') 
-			         : utf8_decode($t['task_name']));
+			$name = ((mb_strlen($t['task_name']) > 25) 
+			         ? (mb_substr($t['task_name'], 0, 22) . '...') 
+			         : $t['task_name']);
 			$nameUser = $t['user_name'];
 		} else {
 			//while using charset different than UTF-8 we need not to use utf8_deocde
